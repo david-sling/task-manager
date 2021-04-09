@@ -43,6 +43,23 @@ router.get('/:postId', async (req,res) => {
   
 });
 
+//get posts from string
+router.get('/search/:search', async (req,res) => {
+    try{
+        const posts = await Post.find({
+            $or:[
+                { title: { $regex: req.params.search } },
+                { content: { $regex: req.params.search } },
+        ]});
+        res.json(posts);
+        console.log(req.params.search);
+    }catch(err){
+        console.log('error');
+        res.json({message: err});
+    }
+  
+});
+
 
 //Delete post
 router.delete('/:postId', async (req,res) => {
