@@ -37,6 +37,6 @@ mongoose.connect(
 
 
 //LISTEN
-app.listen(9000||process.env.PORT);
+app.listen(process.env.PORT||9000);
 
 app.use('/api', router);
